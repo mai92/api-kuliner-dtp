@@ -1,0 +1,14 @@
+models:
+  Category:
+    name: string
+    slug: string unique
+    relationships:
+      hasMany:
+        Place
+  Place:
+    name: string
+    category_id: id foreign
+    slug: string unique
+    photo: string nullable default:null
+    description: text
+    address: string nullable default:null

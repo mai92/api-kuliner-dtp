@@ -1,0 +1,11 @@
+created:
+    - database/factories/CategoryFactory.php
+    - database/factories/PlaceFactory.php
+    - database/migrations/2024_05_16_065654_create_categories_table.php
+    - database/migrations/2024_05_16_065655_create_places_table.php
+    - app/Models/Category.php
+    - app/Models/Place.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    Category: { name: string, slug: 'string unique', relationships: { hasMany: Place } }
+    Place: { name: string, category_id: 'id foreign', slug: 'string unique', photo: 'string nullable default:null', description: text, address: 'string nullable default:null' }
