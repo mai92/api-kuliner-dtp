@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
 use App\Models\Category;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
@@ -27,10 +24,11 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->live()
                     ->debounce(1000)
-                    ->afterStateUpdated(fn (Forms\Set $set, string $state) => $set('slug', Str::slug($state)))
+                    ->afterStateUpdated(fn(Forms\Set $set, string $state) => $set('slug', Str::slug($state)))
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('slug')
+                    ->readOnly()
                     ->required()
                     ->maxLength(255),
             ]);

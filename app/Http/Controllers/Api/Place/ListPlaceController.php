@@ -14,10 +14,10 @@ class ListPlaceController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $places = Place::query();
+        $places = Place::with('category');
 
         if ($request->filled('name')) {
-            $places->where('name', 'like', '%' . $request->get('name') . '%');
+            $places->where('name', 'like', '%'.$request->get('name').'%');
         }
 
         return PlaceResource::collection($places->paginate(10));

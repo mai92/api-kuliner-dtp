@@ -21,6 +21,7 @@ class PlaceResource extends JsonResource
             'slug' => $this->slug,
             'photo' => Storage::url($this->photo),
             'description' => $this->description,
+            'category' => CategoryResource::make($this->whenLoaded('category'))
         ];
     }
 }
